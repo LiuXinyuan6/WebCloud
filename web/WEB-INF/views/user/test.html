@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Personal</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta property="qc:admins" content="77103107776157736375" />
+    <meta property="wb:webmaster" content="c4f857219bfae3cb" />
+    <meta http-equiv="Access-Control-Allow-Origin" content="*" />
+    <meta http-equiv="Cache-Control" content="no-transform " />
+
+
+
+    <link rel="stylesheet" th:href="@{/resources/user/login/css/base.css}" type="text/css" />
+    <link rel="stylesheet" th:href="@{/resources/user/login/css/common-less(1).css}" type="text/css" />
+    <link rel="stylesheet" th:href="@{/resources/user/login/css/moco.min.css}" type="text/css" />
+    <link rel="stylesheet" th:href="@{/resources/user/login/css/common-less.css}" type="text/css" />
+    <link rel="stylesheet" th:href="@{/resources/user/login/css/profile-less.css}" type="text/css" />
+    <script th:src="@{/resources/user/login/js/jquery-1.8.0.min.js}"></script>
+    <script th:src="@{/resources/user/login/js/checkRepeat.js}"></script>
+    <script th:src="@{/resources/user/login/js/disable.js}"></script>
+
+
+</head>
+
+<body >
+
+
+
+
+
+<div id="main">
+
+    <div class="page-settings">
+        <div class="setting pb10">
+            <div class="nav-tabs pa">
+                <h class="baseinfo fl active">基本信息</h>
+
+                <div class="cb"></div>
+            </div>
+            <div class="contentBox">
+                <div class="formBox">
+                    <div id="setting-profile" class="setting-wrap setting-profile">
+
+                        <div style="padding-bottom: 55px" class="wlfg-wrap clearfix ">
+                            <label class="label-name" for="job">头像：</label>
+                            <div class="rlf-group">
+                                <img class="fl avator-img" id="js-portrait" src="http://img.mukewang.com/58492fe600012e8e01800180-200-200.jpg" data-portrait="58492fe600012e8e01800180" width="180" height="180">
+                                <div class="fl ml20 pr">
+                                    <div><input type="button" hidefocus="true" value="换一换" class="js-avator-try avator-try"></div>
+                                    <div id="avator-btns" class="avator-btn-inner">
+                                        <!--div class="avator-btn-snswrap">
+                                            <span class="l-sns-btn l-sns-weibo" data-sns="weibo">从新浪微博同步头像</span>
+                                        </div !-->
+
+
+                                        <div class="avator-btn-wrap">
+                                            <form target="uploadtarget" action="postpic" method="post" enctype="multipart/form-data">
+                                                <a href="javascript:void(0)" hidefocus="true" class="avator-btn-fake">上传头像</a>
+                                                <input class="hide" type="file" title="上传头像" name="fileField" id="upload" accept="image/*">
+                                                <input class="hide" type="hidden" name="type" value="1">
+                                            </form>
+                                            <iframe src="about:blank" id="uploadtarget" name="uploadtarget" frameborder="0" style="display:none;"></iframe>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="cb"></div>
+                                <p class="rlf-tip-wrap errorHint color-red" ></p>
+                            </div>
+                        </div>
+
+                        <form id="profile" th:action="@{/edit/user}" method="post">
+                            <p hidden="hidden"><input id="sId" name="user_id" th:value="${session.UserLogin.getUser_id()}"></p>
+                            <div class="wlfg-wrap clearfix">
+                                <label class="label-name" for="user_name" >昵称：</label>
+                                <div class="rlf-group">
+                                    <input type="text" name="user_name" id="user_name"  autocomplete="off"  data-validate="require-nick"  class="moco-form-control"  disabled="disabled" th:value="${session.UserLogin.getUser_name()}" placeholder="请输入昵称." onblur="aaa()"/>
+                                    <font color="red"> <span id="msg" style="font-family: 仿宋" th:text="${repeatMessage}" ></span></font><br>
+                                    <p class="rlf-tip-wrap errorHint color-red" ></p>
+                                </div>
+                            </div>
+
+
+
+                            <div class="wlfg-wrap clearfix">
+                                <label class="label-name" for="user_real_name" >真实姓名：</label>
+                                <div class="rlf-group">
+                                    <input type="text" name="user_real_name" id="user_real_name"  autocomplete="off"  data-validate="require-nick"  class="moco-form-control" th:value="${session.UserLogin.getUser_real_name()}" value="Sequin_YF" disabled="disabled" placeholder="请输入姓名"/>
+                                    <p class="rlf-tip-wrap errorHint color-red" ></p>
+                                </div>
+                                <label class="label-name" for="province-select">学院：</label>
+                                <div class="rlf-group profile-address">
+                                    <select id="province-select" class='moco-form-control' hidefocus="true" disabled name="user_dept">
+                                        <option value="0" ><span th:text="${session.UserLogin.getUser_dept()}"></span></option>
+                                        <option value="软件学院">软件学院</option>
+                                        <option value="计算机科学学院">计算机科学学院</option>
+                                        <option value="经济管理学院">经济管理学院</option>
+                                        <option value="机械学院">机械学院</option>
+                                        <option value="师范学院">师范学院</option>
+                                        <option value="音乐学院">音乐学院</option>
+                                        <option value="建筑学院">建筑学院</option>
+                                        <option value="艺术学院">艺术学院</option>
+                                        <option value="其他">其他</option>
+                                    </select>
+                                    <!--<select class='moco-form-control' id="city-select" hidefocus="true">-->
+                                        <!--<option value="0">选择城市</option>-->
+                                    <!--</select>-->
+                                    <!--<select class='moco-form-control mr0' id="area-select" hidefocus="true">-->
+                                        <!--<option value="0">选择区县</option>-->
+                                    <!--</select>-->
+                                    <div class="cb"></div>
+                                    <p class="rlf-tip-wrap errorHint color-red"></p>
+                                </div>
+                            </div>
+
+
+                            <!--<div class="wlfg-wrap clearfix">-->
+                                <!--<label class="label-name" for="nick" >学院：</label>-->
+                                <!--<div class="rlf-group">-->
+                                    <!--<input type="text" name="nickname" id="user_dept"  autocomplete="off"  data-validate="require-nick"  class="moco-form-control"  disabled="disabled" value="费卓" placeholder="请输入学院"/>-->
+                                    <!--<p class="rlf-tip-wrap errorHint color-red" ></p>-->
+                                <!--</div>-->
+                            <!--</div>-->
+
+
+                            <div class="wlfg-wrap clearfix">
+                                <label class="label-name" for="user_class" >班级：</label>
+                                <div class="rlf-group">
+                                    <input type="text" name="user_class" id="user_class"  autocomplete="off"  data-validate="require-nick"  class="moco-form-control"  disabled="disabled" th:value="${session.UserLogin.getUser_class()}" value="费卓" placeholder="请输入班级"/>
+                                    <p class="rlf-tip-wrap errorHint color-red" ></p>
+                                </div>
+                            </div>
+                            <div class="wlfg-wrap clearfix">
+                                <label class="label-name" for="user_stu_id" >学号：</label>
+                                <div class="rlf-group">
+                                    <input type="text" name="user_stu_id" id="user_stu_id"  autocomplete="off"  data-validate="require-nick"  class="moco-form-control"  disabled="disabled" th:value="${session.UserLogin.getUser_stu_id()}" value="费卓" placeholder="请输入学号"/>
+                                    <p class="rlf-tip-wrap errorHint color-red" ></p>
+                                </div>
+                            </div>
+
+                            <div class="wlfg-wrap clearfix">
+                                <label class="label-name" for="profile-submit"></label>
+                                <div class="rlf-group">
+                                    <table>
+                                        <tr>
+                                            <td>
+                                                <span id="profile-submit"  hidefocus="true"  aria-role="button" class="rlf-btn-green btn-block profile-btn" onclick="disableTest()">编辑信息</span>
+                                            </td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                           <td>
+                                               <input id="save" type="submit" class="rlf-btn-green btn-block profile-btn" style="display:none">
+                                            </td>
+                                        </tr>
+
+
+                                    </table>
+
+                                </div>
+
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<div id="J_GotoTop" class="elevator">
+
+    <a href="#" class="elevator-msg" title="回到顶部"><span>回到顶部</span><i class="icon-feedback"></i></a>
+    <a href="#" class="elevator-app" title="QQ"><span>QQ</span>
+        <i class="icon-appdownload"></i>
+        <div class="elevator-app-box"><img th:src="@{/resources/user/login/images/yunQ.png}"></div>
+    </a>
+    <a href="#" class="elevator-weixin no-goto" id="js-elevator-weixin" title="微信"><span>微信</span>
+        <i class="icon-wxgzh"></i>
+        <div class="elevator-weixin-box"><img th:src="@{/resources/user/login/images/yun.jpg}"></div>
+    </a>
+    <a href="3" class="elevator-top no-goto" style="display:none" title="顶部" id="backTop"><i class="icon-up2"></i></a>
+</div>
+
+<div style="display: none">
+    <script type="text/javascript">
+        var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+        document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Ff0cfcccd7b1393990c78efdeebff3968' type='text/javascript'%3E%3C/script%3E"));
+        (function (d) {
+            window.bd_cpro_rtid="rHT4P1c";
+            var s = d.createElement("script");s.type = "text/javascript";s.async = true;s.src = location.protocol + "//cpro.baidu.com/cpro/ui/rt.js";
+            var s0 = d.getElementsByTagName("script")[0];s0.parentNode.insertBefore(s, s0);
+        })(document);
+    </script>
+    <script>
+        (function(){
+            var bp = document.createElement('script');
+            bp.src = '//push.zhanzhang.baidu.com/push.js';
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(bp, s);
+        })();
+    </script>
+</div>
+</body>
+</html>

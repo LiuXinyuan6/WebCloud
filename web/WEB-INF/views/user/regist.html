@@ -1,0 +1,81 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<link rel="icon" href="images/cloub.png" type="images/weibo.png" th:href="@{/resources/login/images/cloub.png}">
+<!-- Head -->
+<head>
+
+    <title>用户注册</title>
+
+    <!-- Meta-Tags -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+
+    <!-- //Meta-Tags -->
+
+    <!-- Style --> <link rel="stylesheet" href="css/style.css" type="text/css" media="all" th:href="@{/resources/login/css/style.css}">
+    <script th:src="@{/resources/login/js/jquery-1.8.0.min.js}"></script>
+    <script th:src="@{/resources/login/js/limit.js}"></script>
+    <script th:src="@{/resources/login/js/checkRepeat.js}"></script>
+
+</head>
+<!-- //Head -->
+
+<!-- Body -->
+<body>
+
+<h1 style="font-family: 楷体,serif">用户注册</h1>
+
+<div class="container w3layouts agileits" >
+
+    <div class="login w3layouts agileits">
+
+        <form action="#" th:action="@{/login/register}" method="post">
+            <input type="text" Name="user_name" id="user_name" placeholder="用户名" required="" onblur="aaaa()">
+            <font color="red"> <span id="msg" style="font-family: 仿宋" th:text="${repeatMessage}" ></span></font><br>
+            <input type="password" Name="user_pwd" id="newPassword" placeholder="密码"
+                   required="" onblur="checkPassword()">
+            <font color="red"> <span id="limit" style="font-family: 仿宋"></span></font><br>
+            <input type="text" Name="user_stu_id" placeholder="学号" id="user_stu_id" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')">
+            <font color="red"> <span id="formate" style="font-family: 仿宋"></span></font>
+            <input type="text" name="user_real_name" placeholder="真实姓名" required="flase">
+            <div style="padding-right: 57px;padding-bottom: 10px">
+                <span  style="color: #CCCCCC"  >所在院系:</span>
+                <select name="user_dept"  required="" style="color: #CCCCCC;background-color: #434343">
+                    <option value ="软件学院"  >软件学院</option>
+                    <option value ="saab">Saab</option>
+                    <option value="opel">Opel</option>
+                    <option value="audi">Audi</option>
+                </select>
+            </div>
+
+            <input type="text" name="user_class" placeholder="班级" >
+
+        <ul class="tick w3layouts agileits">
+            <li>
+                <input type="checkbox" id="brand1" value="">
+            </li>
+        </ul>
+        <div class="send-button w3layouts agileits">
+
+                <input type="submit" value="注 册">
+            <a href="/login/toLogin" ><input type="button" value="取消"></a>
+        </div>
+        </form>
+        <div class="clear"></div>
+    </div><div class="copyrights">Collect from <a href="http://www.cssmoban.com/" >企业网站模板</a></div>
+
+    <div class="clear"></div>
+
+</div>
+
+<div class="footer w3layouts agileits">
+    <p> 云智工作室 <a href="http://www.cssmoban.com/" target="_blank" title=" 云智工作室"> 云智工作室</a> - Collect from <a href="http://www.cssmoban.com/" title=" 云智工作室" target="_blank"> 云智工作室</a></p>
+</div>
+
+</body>
+<script th:src="@{/resources/login/js/jquery-1.8.0.min.js}" src="jquery-1.8.0.min.js"></script>
+
+</html>
+

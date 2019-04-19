@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<title>H5</title>
+<meta name="viewport" content="initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width">
+<meta name="viewport" media="(device-height: 568px)" content="initial-scale=1.0,user-scalable=no,maximum-scale=1">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link rel="stylesheet" th:href="@{/resources/CloudResourceLink/css/gongyong.css}">
+    <link rel="stylesheet" th:href="@{/resources/CloudResourceLink/css/layui.css}" media="all">
+<script rel="stylesheet" th:src="@{/resources/CloudResourceLink/js/jquery-1.8.3.min.js}" type="text/javascript"></script>
+
+</head>
+
+<body>
+
+<div class="head">
+<span class="head_lf"><a href="add_link.htmlindex.html">返回</a></span>
+
+资 源 链 接
+
+</div>
+
+<div class="zhuce">
+
+    <form name="sumitFrom" th:action="@{/rsl/addLink}" kmethod="post">
+	<div class="text">
+        <span>链接名</span>
+        <input type="text" name="srcl_name" required lay-verify="required" placeholder="请输入链接名" class="input">
+    </div>
+        <div class="text">
+            <span>链接地址</span>
+            <input type="text"  name="srcl_link" required lay-verify="required" placeholder="请输入链接地址" class="input" style="width:55%">
+            <p style="size:20px;width:80%;height:75%;color:orangered;margin: auto" th:text="${errorLink}"></p>
+
+    </div>
+    <div class="text">
+        <span>提取码</span>
+        <input type="text" name="srcl_pwd" placeholder="请输入提取码" class="input">
+    </div>
+    <div class="text">
+        <input type="hidden" name="user_id"  th:value="${session.UserLogin.getUser_id()}">
+        <span>链接描述</span>
+        <input type="text"  name="srcl_type" required lay-verify="required" placeholder="请输入" class="input">
+
+    </div>
+
+
+        <div class="btndl"><input type="submit" value="提交" onclick="sumitFun()" title="点击提交"></div>
+    </form>
+</div>
+<div class="foot">
+	<a href="index.html" class="now">
+    <span><img th:src="@{/resources/CloudResourceLink/images/sy.png}"></span>
+    首页
+    </a>
+    <a href="#">
+    <span><img th:src="@{/resources/CloudResourceLink/images/sousuo.png}"></span>
+    查看链接
+    </a>
+‘
+    <a th:href="@{/rsl/searchAll}">
+    <span><img th:src="@{/resources/CloudResourceLink/images/sousuo.png}"></span>
+    我的分享
+    </a>
+
+    <a href="#">
+    <span><img th:src="@{/resources/CloudResourceLink/images/sousuo.png}"></span>
+    更多
+    </a>
+
+</div>
+<div style="text-align:center;">
+    <br>
+    <br>
+<p><a href="/homepage/about" target="_blank">云智工作室</a></p>
+</div>
+<script>
+
+    function sumitFun() {
+        if (confirm("确认提交")) {
+            sumitFrom.submit();
+            return true;
+
+        } else {
+            return false;
+        }
+
+
+    }</script>
+</body>
+</html>

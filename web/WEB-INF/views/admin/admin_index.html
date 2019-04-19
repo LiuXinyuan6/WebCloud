@@ -1,0 +1,124 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>云智工作室后台管理系统</title>
+    <!--meta-->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Easy Admin Panel Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
+    Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+    <!--css-->
+    <link href="cloub.png" rel="icon"  type="images/weibo.png" th:href="@{/resources/login/images/cloub.png}">
+    <link href="bootstrap.min.css" rel='stylesheet' type='text/css' th:href="@{/resources/admin/css/bootstrap.min.css}"/>
+    <link href="style.css" rel='stylesheet' type='text/css' th:href="@{/resources/admin/css/style.css}"/>
+    <link href="font-awesome.css" rel="stylesheet" th:href="@{/resources/admin/css/font-awesome.css}">
+    <link href="icon-font.min.css" rel="stylesheet"  type='text/css' th:href="@{/resources/admin/css/icon-font.min.css}"/>
+    <link href="animate.css" rel="stylesheet" type="text/css" media="all" th:href="@{/resources/admin/css/animate.css}">
+    <link href='http://fonts.useso.com/css?family=Cabin:400,400italic,500,500italic,600,600italic,700,700italic' rel='stylesheet' type='text/css'>
+    <link href="sweet-alert.css" rel="stylesheet"th:href="@{/resources/admin/css/sweet-alert.css}">
+    <!--javascript-->
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <script src="wow.min.js" th:src="@{/resources/admin/js/wow.min.js}"></script>
+    <script>
+        new WOW().init();
+    </script>
+    <script src="Chart.js" th:src="@{/resources/admin/js/Chart.js}"></script>
+    <script src="jquery-1.10.2.min.js" th:src="@{/resources/admin/js/jquery-1.10.2.min.js}"></script>
+    <script src="sweet-alert.min.js" th:src="@{/resources/admin/js/sweet-alert.min.js}"></script>
+
+</head>
+
+<body class="sticky-header left-side-collapsed">
+<!--页面容器-->
+<section>
+    <!--左侧导航栏-->
+    <div th:replace="/admin/navigate :: navigate_left"></div>
+
+    <!--中央容器-->
+    <div class="main-content">
+        <!--头部导航栏-->
+        <div th:replace="/admin/navigate :: navigate_top"></div>
+        <!--中心内容-->
+        <div id="page-wrapper">
+            <!--中心整个图标部分start-->
+            <div class="graphs">
+                <!--中心上部分，四个模块start-->
+                <div class="col_3">
+                    <!--中心第一个模块-->
+                    <div class="col-md-3 widget widget1">
+                        <div class="r3_counter_box">
+                            <i class="fa fa-calendar"></i>
+                            <div class="stats">
+                                <p class="p0">签到</p><br/>
+                                <button class="buttons " onclick="submit_link(this)"><a href="showsign" th:href="@{/admin/showSign}">查看出勤</a></button>
+                                <button class="buttons " onclick="submit_link(this)" ><a href="exportsign" th:href="@{/admin/exportSign}">导出报表</a></button>
+                                <br/><br/>
+                            </div>
+                        </div>
+                    </div>
+                    <!--中心第二个模块-->
+                    <div class="col-md-3 widget widget1">
+                        <div class="r3_counter_box">
+                            <i class="fa fa-cloud"></i>
+                            <div class="stats">
+                                <p class="p1">链接</p><br/>
+                                <button class="buttons button1" onclick="submit_link(this)"><a href="showlink" th:href="@{/admin/showLink}">查看链接</a></button>
+                                <button class="buttons button1" onclick="submit_link(this)"><a href="managelink" th:href="@{/admin/manageLink}">审核链接</a></button>
+                                <br/><br/>
+                            </div>
+                        </div>
+                    </div>
+                    <!--中心第三个模块-->
+                    <div class="col-md-3 widget widget1">
+                        <div class="r3_counter_box">
+                            <i class="fa fa-folder-open"></i>
+                            <div class="stats">
+                                <p class="p3">文件</p><br/>
+                                <button class="buttons button3" onclick="submit_link(this)"><a href="showfile" th:href="@{/admin/showFile}">查看文件</a></button>
+                                <button class="buttons button3" onclick="submit_link(this)"><a href="managefile" th:href="@{/admin/manageFile}">审核文件</a></button>
+                                <br/><br/>
+                            </div>
+                        </div>
+                    </div>
+                    <!--中心第四个模块-->
+                    <div class="col-md-3 widget widget1">
+                        <div class="r3_counter_box">
+                            <i class="fa fa-users"></i>
+                            <div class="stats">
+                                <p class="p2">用户</p><br/>
+                                <button class="buttons button2" onclick="submit_link(this)"><a href="manageuser" th:href="@{/admin/manageUser}">管理用户</a></button>
+                                <button class="buttons button2" onclick="submit_link(this)"><a href="manageadmin" th:href="@{/admin/manageAdmin}">管理管理员</a></button>
+                                <br/><br/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--清除固定-->
+                    <div class="clearfix"> </div>
+                </div>
+                <script>
+                    function submit_link(button) {
+                        var a=button.getElementsByTagName("a")[0];
+                        a.click();
+                    }
+                </script>
+                <!--中心上部分，四个模块end-->
+                <div class="clearfix"> </div>
+            </div>
+            <!--中心整个图标部分end-->
+        </div>
+    </div>
+
+    <!--底部版权信息-->
+    <div th:replace="/admin/navigate :: navigate_bottom"></div>
+
+</section>
+
+<!--由于引入顺序的问题，所以这三个js放在最后，不要动-->
+<script src="jquery.nicescroll.js" th:src="@{/resources/admin/js/jquery.nicescroll.js}"></script>
+<script src="scripts.js" th:src="@{/resources/admin/js/scripts.js}"></script>
+<script src="bootstrap.min.js" th:src="@{/resources/admin/js/bootstrap.min.js}"></script>
+
+</body>
+
+</html>

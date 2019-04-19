@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>云智工作室</title>
+    <!-- Font Awesome Icons -->
+    <link  th:href="@{/resources/Homepage/vendor/fontawesome-free/css/all.min.css}" rel="stylesheet" type="text/css">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic' rel='stylesheet' type='text/css'>
+
+    <!-- Plugin CSS -->
+    <link  th:href="@{/resources/Homepage/vendor/magnific-popup/magnific-popup.css}" rel="stylesheet">
+    <link rel="stylesheet"  th:href="@{/resources/Homepage/css/creative.min.css}">
+    <style>
+        .hh{
+            text-align: center;
+            margin-top: 40px;
+
+        }
+
+
+    </style>
+</head>
+
+<body id="page-top">
+<div class="modal fade bs-example-modal-sm" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title zhichi" id="myModalLabel" >支持我们</h4>
+            </div>
+            <div class="modal-body " align="center"  >
+
+                <img th:src="@{/resources/Homepage/img/zhifubao.png}" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;  <img th:src="@{/resources/Homepage/img/weixinzhifu.png}">
+
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav" th:fragment="nav">
+    <div class="container">
+        <a class="navbar-brand js-scroll-trigger" href="#page-top">云智工作室</a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class=" nav navbar-nav ml-auto my-2 my-lg-0">
+                <font color="#ff8c00"> <span style="font-family: 微软雅黑" >欢迎您！</span></font>
+                &nbsp;&nbsp;&nbsp;
+                <img style="width:17px; height:17px; border-radius:50%; margin-top: 3px"   th:src="@{/resources/Homepage/img/user_03.jpg}">
+                &nbsp;
+                <font color="#ff8c00"> <span style="font-family: 微软雅黑"><a th:href="@{/edit/myspace}" ><span th:text="${session.user_name}"/> </a> </span></font>
+
+
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="#portfolio" th:href="@{/rsf/download}">文件下载</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="#portfolio" th:href="@{/rsf/upload}">文件上传</a>
+                </li>
+
+
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="#portfolio" th:href="@{/cloud/sign}">签到</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="#portfolio">活动</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="#contact">联系我们</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<!-- Masthead  -->
+<header class="masthead">
+    <div class="container h-100 masthead">
+
+        <div class="row h-100 align-items-center justify-content-center text-center">
+            <div class="col-lg-10 align-self-end">
+                <h1 class="text-uppercase text-white font-weight-bold">云 智 工 作 室</h1>
+                <hr class="divider my-4">
+            </div>
+            <div class="col-lg-8 align-self-baseline">
+                <p class="text-white-75 font-weight-light mb-5">欢 迎 访 问 云 智 工 作 室 第 一 代 官 网</p>
+                <a class="btn btn-primary btn-xl js-scroll-trigger" href="#services">了解更多</a>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+<section class="page-section" id="services">
+    <div class="container">
+        <h2 class="text-center mt-0">我们将提供下列服务</h2>
+        <hr class="divider my-4">
+        <div class="row">
+            <div class="col-lg-4 col-md-6 text-center">
+                <div class="mt-5">
+                    <a th:href="@{/homepage/about}">  <img style="height: 68px" width="83px" th:src="@{/resources/Homepage/img/action/people-carry.png}"> </a>
+                    <h3 style="padding-top: 20px" class="h4 mb-2">社团简介</h3>
+                    <p class="text-muted mb-0">在这里你能了解到云智工作室的概况和取得成就。</p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 text-center">
+                <div class="mt-5">
+                    <a th:href="@{/login/toindex}">  <img style="height: 68px" width="83px" th:src="@{/resources/Homepage/img/action/book.png}"> </a>
+
+                    <h3 style="padding-top: 20px" class="h4 mb-2">学习资料</h3>
+                    <p class="text-muted mb-0">在这里你能看到云智工作室定期上传的学习资料，加入我们你就能免费获得了！</p>
+                </div>
+            </div>
+
+
+            <div class="col-lg-4 col-md-6 text-center">
+                <div class="mt-5">
+                    <a  data-toggle="modal" data-target="#myModal"><img style="height: 68px" width="83px" th:src="@{/resources/Homepage/img/action/like.png}"> </a>
+                    <h3 style="padding-top: 20px" class="h4 mb-2">支持我们</h3>
+                    <p class="text-muted mb-0">感谢您对我们的支持！</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Portfolio Section -->
+<section id="portfolio">
+    <div class="container-fluid p-0">
+        <div class="row no-gutters">
+            <div class="container-fluid " style="height: 150px; background-color: #fcf8e3"  >
+                <div class="hh"><h1 >精 彩 瞬 间</h1></div>
+                <hr class="divider my-4">
+            </div>
+            <div class="col-lg-4 col-sm-6">
+                <a class="portfolio-box" th:href="@{/resources/Homepage/img/Association/association_01.png}" >
+                    <img class="img-fluid"  th:src="@{/resources/Homepage/img/Association/association_01.png}" alt="">
+                    <div class="portfolio-box-caption">
+                        <div class="project-类别 text-white-50">
+                            20180513大四学长交流会
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-4 col-sm-6">
+                <a class="portfolio-box"  th:href="@{/resources/Homepage/img/Association/association_02.JPG}">
+                    <img class="img-fluid"  th:src="@{/resources/Homepage/img/Association/association_02.JPG}" alt="">
+                    <div class="portfolio-box-caption">
+                        <div class="project-类别 text-white-50">
+                            云智大家庭
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-4 col-sm-6">
+                <a class="portfolio-box"  th:href="@{/resources/Homepage/img/Association/association_03.jpg}">
+                    <img class="img-fluid"  th:src="@{/resources/Homepage/img/Association/association_03.jpg}" alt="">
+                    <div class="portfolio-box-caption">
+                        <div class="project-类别 text-white-50">
+                            比赛获奖
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-4 col-sm-6">
+                <a class="portfolio-box" href="img/Association/association_04.jpg" th:href="@{/resources/Homepage/img/Association/association_04.jpg}">
+                    <img class="img-fluid" src="img/Association/association_04.jpg" th:src="@{/resources/Homepage/img/Association/association_04.jpg}"alt="">
+                    <div class="portfolio-box-caption">
+                        <div class="project-类别 text-white-50">
+                            地下室
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-4 col-sm-6">
+                <a class="portfolio-box"  th:href="@{/resources/Homepage/img/Association/association_05.jpg}">
+                    <img class="img-fluid" th:src="@{/resources/Homepage/img/Association/association_05.jpg}"alt="">
+                    <div class="portfolio-box-caption">
+                        <div class="project-类别 text-white-50">
+                            锋仁腾云编程竞赛
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-4 col-sm-6">
+                <a class="portfolio-box" th:href="@{/resources/Homepage/img/Association/association_06.JPG}">
+                    <img class="img-fluid"  th:src="@{/resources/Homepage/img/Association/association_06.JPG}"alt="">
+                    <div class="portfolio-box-caption">
+                        <div class="project-类别 text-white-50">
+                            年度总结报告大会
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Contact Section -->
+<section class="page-section" id="contact">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 text-center">
+                <h2 class="mt-0">联系我们</h2>
+                <hr class="divider my-4">
+                <p class="text-muted mb-5">你对云智工作室有什么想法或者好的建议么？请联系我们。</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 ml-auto text-center">
+                <img  th:src="@{/resources/Homepage/img/weixin.jpg}" alt="WeChat" class="img-rounded" width="70px" height="70px"><br><br>
+                <div>WeChat : souljolly</div>
+            </div>
+            <div class="col-lg-4 mr-auto text-center">
+                <img th:src="@{/resources/Homepage/img/QQ.jpg}" alt="QQ" class="img-rounded" width="60px" height="70px"><br><br>
+                <!-- Make sure to change the email address in anchor text AND the link below! -->
+                <div>QQ : 941990247</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-light py-5">
+    <div class="container">
+        <div class="small text-center text-muted">Copyright &copy; 2019 - 云智工作室</div>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script  th:src="@{/resources/Homepage/vendor/jquery/jquery.min.js}"></script>
+<script  th:src="@{/resources/Homepage/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+<!-- Plugin JavaScript -->
+<script  th:src="@{/resources/Homepage/vendor/jquery-easing/jquery.easing.min.js}"></script>
+<script  th:src="@{/resources/Homepage/vendor/magnific-popup/jquery.magnific-popup.min.js}"></script>
+<script  th:src="@{/resources/Homepage/js/popper.min.js}"></script>
+<!-- Custom scripts for this template -->
+<script th:src="@{/resources/Homepage/js/creative.min.js}"></script>
+<script  th:src="@{/resources/Homepage/js/vendor/bootstrap.min.js}"></script>
+
+</body>
+
+</html>

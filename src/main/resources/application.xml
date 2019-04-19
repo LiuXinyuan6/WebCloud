@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+        <!--1.配置数据源-->
+        <context:component-scan base-package="cn.cloud.service"/>
+        <!--2.创建SqlSessionFactory.生产sqlSqlSession-->
+        <context:property-placeholder location="classpath:cloud.properties"/>
+        <bean id="druid" class="com.alibaba.druid.pool.DruidDataSource">
+                <property name="driverClassName" value="${cloud.driver}"></property>
+                <property name="url" value="${cloud.url}"></property>
+                <property name="username" value="${cloud.username}"></property>
+                <property name="password" value="${cloud.password}"></property>
+        </bean>
+    <!--数据源的注入-->
+        <bean id="sqlSessionFactoryBean" class="org.mybatis.spring.SqlSessionFactoryBean">
+                <!--数据源的注入-->
+                <property name="dataSource" ref="druid"/>
+                <property name="configLocation" value="classpath:config.xml"></property>
+                <!--mapper文件的注册-->
+                <property name="mapperLocations" value="classpath:mapper/*.xml"></property>
+                <!--起别名
+                   默认 User|user
+               -->
+                <!-- 方法一 -->
+                <property name="typeAliasesPackage" value="cn.cloud.domain"></property>
+        </bean>
+
+
+    <!--mybatis接口代理开发
+        *接口类名和映射文件必须同名
+        *接口类和映射文件必须在同一目录下
+        *映射文件namespace名字必须是接口的全类路径名
+        *接口的方法名必须和映射Statement的id一致
+    -->
+        <bean  class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+                <!--依赖sqlsesionFactory-->
+                <property name="sqlSessionFactoryBeanName" value="sqlSessionFactoryBean"></property>
+                <property name="basePackage" value="cn.cloud.dao"/>
+        </bean>
+        <!--3.事务-->
+        <bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+                <property name="dataSource" ref="druid"/>
+        </bean>
+        <!--事务通知-->
+        <tx:advice id="tx" transaction-manager="txManager">
+
+        </tx:advice>
+</beans>

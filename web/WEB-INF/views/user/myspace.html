@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>后台用户中心</title>
+	<link rel="stylesheet" th:href="@{/resources/user/file/statics/css/layui.css}"/>
+	<link rel="stylesheet" type="text/css" th:href="@{/resources/user/file/statics/css/iconfont.css}"/>
+	<link rel="stylesheet" type="text/css" th:href="@{/resources/user/file/statics/css/style.css}"/>
+	<script th:src="@{/resources/user/login/js/jquery-1.8.0.min.js}" src="jquery-1.8.0.min.js"></script>
+	<script th:src="@{/resources/user/login/js/space.js}"></script>
+	<script th:src="@{/resources/user/login/js/CloseWeb.js}"></script>
+	<link  th:href="@{/resources/Homepage/vendor/fontawesome-free/css/all.min.css}" rel="stylesheet" type="text/css">
+
+	<!-- Google Fonts -->
+	<link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700" rel="stylesheet">
+	<link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic' rel='stylesheet' type='text/css'>
+
+	<!-- Plugin CSS -->
+	<link  th:href="@{/resources/Homepage/vendor/magnific-popup/magnific-popup.css}" rel="stylesheet">
+	<!-- Theme CSS - Includes Bootstrap -->
+	<link rel="stylesheet"  th:href="@{/resources/Homepage/css/creative.min.css}">
+
+</head>
+
+<body>
+<nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav" th:fragment="nav">
+	<div class="container">
+		<a class="navbar-brand js-scroll-trigger" th:href="@{/login/toindex}">云智 | 个人中心</a>
+		<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarResponsive">
+			<ul class=" nav navbar-nav ml-auto my-2 my-lg-0">
+
+
+
+				<li class="nav-item">
+					<a class="nav-link js-scroll-trigger" th:href="@{/login/toindex}">首页</a>
+				</li>
+
+				<li class="nav-item">
+					<a class="nav-link js-scroll-trigger" style="color: #F96900" th:href="@{/edit/quit}">退出</a>
+				</li>
+
+
+			</ul>
+		</div>
+	</div>
+</nav>
+
+<div class="header">
+	<div class="bar">
+		<div class="w1200">
+		</div>
+	</div>
+	<div class="user-info">
+		<div class="w1200">
+			<div class="user-headface">
+				<img th:src="@{/resources/user/file/statics/images/user_face.jpg}"/>
+			</div>
+			<div class="user-account">
+				<p class="tip">您好
+					<span th:text="${session.user_name}"></span>！</p>
+				<p class="account">
+
+					<span>用户：<span th:text="${session.user_name}"></span></span>
+				</p>
+			</div>
+
+		</div>
+	</div>
+</div>
+<div class="main w1200">
+	<div class="left">
+		<ul>
+			<li>
+				<a href="https://www.baidu.com">
+					<i class="icon iconfont icon-lingdang"></i>
+					消息
+				</a>
+			</li>
+
+			<li  id="myself">
+				<a href="javascript:">
+					<i  class="icon iconfont icon-geren"></i>
+					个人资料
+				</a>
+			</li>
+
+			<li  id="rePass">
+				<a href="javascript:">
+					<i  class="icon iconfont icon-geren"></i>
+					修改密码
+				</a>
+			</li>
+		</ul>
+	</div>
+	<div class="right">
+
+		<div class="no-doc" id="no-doc">
+			<iframe name="aaaaaa" src="/edit/test" scrolling="no" frameborder="0" width="100%" height="100%" id="contentIframe"></iframe>
+		</div>
+
+	</div>
+</div>
+
+
+<footer th:replace="multiplex :: footer" ></footer>
+
+
+<script th:src="@{/resources/user/file/statics/css/layui.js}"></script>
+
+<script  th:src="@{/resources/Homepage/vendor/jquery/jquery.min.js}"></script>
+<script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script  th:src="@{/resources/Homepage/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+<!-- Plugin JavaScript -->
+<script  th:src="@{/resources/Homepage/vendor/jquery-easing/jquery.easing.min.js}"></script>
+<script  th:src="@{/resources/Homepage/vendor/magnific-popup/jquery.magnific-popup.min.js}"></script>
+<!-- Custom scripts for this template -->
+<script th:src="@{/resources/Homepage/js/creative.min.js}"></script>
+<script  th:src="@{/resources/Homepage/js/popper.min.js}"></script>
+<script  th:src="@{/resources/Homepage/js/vendor/bootstrap.min.js}"></script>
+<script  th:src="@{/resources/Homepage/js/easing.min.js}"></script>
+<script  th:src="@{/resources/Homepage/js/jquery.magnific-popup.min.js}"></script>
+</body>
+
+</html>

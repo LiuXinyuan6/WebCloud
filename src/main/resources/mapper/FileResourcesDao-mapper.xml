@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="cn.cloud.dao.FileResourcesDao">
+    <resultMap type="cn.cloud.domain.CloudResourceFile" id="cloudResourceFile">
+        <id property="srcf_id" column="srcf_id"></id>
+        <result property="srcf_name" column="srcf_name"></result>
+        <result property="srcf_type" column="srcf_type"></result>
+        <result property="srcf_src" column="srcf_src"></result>
+        <result property="srcf_size" column="srcf_size"></result>
+        <result property="srcf_date" column="srcf_date"></result>
+        <result property="srcf_describe" column="srcf_describe"></result>
+        <result property="srcf_status" column="srcf_status"></result>
+        <association property="clouduser" column="user_id" javaType="cn.cloud.domain.CloudUser">
+            <id property="user_id" column="user_id"></id>
+            <result property="user_name" column="user_name"></result>
+        </association>
+    </resultMap>
+    <select id="SelectAllInformation" parameterType="CloudResourceFile" resultMap="cloudResourceFile" resultType="CloudResourceFile">
+        select f.srcf_id,f.srcf_name,f.srcf_type,f.srcf_src,f.srcf_size,f.srcf_date,f.srcf_describe,u.user_id,u.user_name from cloud_resource_file f,cloud_user u where f.srcf_status=1 and f.user_id = u.user_id
+    </select>
+    <select id="SelectAllOfInformation" parameterType="CloudResourceFile" resultMap="cloudResourceFile" resultType="CloudResourceFile">
+       select f.srcf_id,f.srcf_name,f.srcf_type,f.srcf_src,f.srcf_size,f.srcf_date,f.srcf_describe,f.srcf_status,u.user_id,u.user_name from cloud_resource_file f,cloud_user u where f.user_id = u.user_id
+    </select>
+
+    <select id="getOneInformation" parameterType="CloudResourceFile" resultMap="cloudResourceFile" resultType="CloudResourceFile">
+        select f.srcf_id,f.srcf_name,f.srcf_type,f.srcf_src,f.srcf_size,f.srcf_date,f.srcf_describe,f.srcf_status,u.user_id,u.user_name from cloud_resource_file f,cloud_user u where f.srcf_id = #{id} and f.user_id = u.user_id
+    </select>
+
+    <update id="updateStatus" parameterType="CloudResourceFile">
+        update cloud_resource_file set srcf_status = 1 where srcf_id = #{id}
+    </update>
+
+    <delete id="deleteOneResource" parameterType="CloudResourceFile">
+        delete from cloud_resource_file where srcf_id = #{id}
+    </delete>
+</mapper>
+
+

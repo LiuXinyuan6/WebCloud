@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="icon" href="images/cloub.png" type="images/weibo.png" th:href="@{/resources/login/images/cloub.png}">
+    <link type="text/css" rel='stylesheet' href='@{/cupertino/jquery-ui.min.css}'
+          th:href="@{/resources/sign/cupertino/jquery-ui.min.css}"/>
+    <link type="text/css" href='@{/fullcalendar/fullcalendar.css}' rel='stylesheet'
+          th:href="@{/resources/sign/fullcalendar/fullcalendar.css}"/>
+    <link type="text/css" href='@{/fullcalendar/fullcalendar.print.css}' rel='stylesheet' media='print'
+          th:href="@{/resources/sign/fullcalendar/fullcalendar.print.css}"/>
+    <script src='@{/lib/jquery.min.js}' th:src="@{/resources/sign/lib/jquery.min.js}"></script>
+    <script src='@{/lib/jquery-ui.custom.min.js}' th:src="@{/resources/sign/lib/jquery-ui.custom.min.js}"></script>
+    <script src='@{/fullcalendar/fullcalendar.min.js}'
+            th:src="@{/resources/sign/fullcalendar/fullcalendar.min.js}"></script>
+    <script>
+
+        $(document).ready(function () {
+
+            var date = new Date();
+            var d = date.getDate();
+            var m = date.getMonth();
+            var y = date.getFullYear();
+
+            var user_id ;
+            /*
+                         此处接收页面跳转过来的用户user_id ,主要用于查询数据库，该用户签到情况*/
+            $('#calendar').fullCalendar({
+                theme: true,
+                header: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'month,agendaWeek,agendaDay'
+                },
+                editable: true,
+                events: function (start, end, timezone, callback) {
+                    $.ajax({
+                        url: "/json/show?user_id=" + user_id,
+                        type: "post",
+                        contentType: "application/json;charset:utf-8",
+                        dataType: "json",
+                        success: function (data) {
+
+                            var events = [];
+                            for (var i = 0; i < data.length; i++) {
+                                events.push({
+                                    title: data[i].title,
+                                    start: data[i].start,
+                                });
+                            }
+                            timezone(events);
+                            callback(events);
+
+                        }
+
+
+                    });
+                },
+
+
+            });
+        });
+
+
+    </script>
+    <style>
+
+        body {
+            margin-top: 40px;
+            text-align: center;
+            font-size: 13px;
+            font-family: "Lucida Grande", Helvetica, Arial, Verdana, sans-serif;
+        }
+
+        #calendar {
+            width: 900px;
+            margin: 0 auto;
+        }
+
+
+    </style>
+
+</head>
+
+<body style="background-image: url('/resources/Homepage/img/bg-masthead.jpg'); background-size: 100%;" >
+
+<ul class=daohang>
+    <li><a href="/homepage" style="color: black">首页</a></li> &nbsp;&nbsp;
+    <li><a href="/cloud/sign" style="color: black;">签到</a></li> &nbsp;&nbsp;
+    <li><a href="/cloud/showSign" style="color: black">考勤</a></li> &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+
+
+    <font style="font-family: 楷体;color:#002752; text-align: center;" size="5">
+        &nbsp;&nbsp;&nbsp;&nbsp;欢迎你：<span th:text="${session.UserLogin.getUser_real_name()}"></span>
+    </font>;
+</ul>
+<div id='calendar' style="background-color #ooo; opacity:0.8;"></div>
+</body>
+<style type="text/css">
+    ul{/*设置导航栏的框框*/
+        margin: 15px auto;/*框框整体的位置，30px是指离网页的顶部和下部的距离，auto控制的是左右距离为自动调节*/
+        width: 800px;/*框框的宽度*/
+        height: 100%;/*框框的长度*/
+        padding: 0px;/*将框框的padding设置为零，不然会导致框框里的内容与框边缘有间隔*/
+        border:0px solid #000;/*添加边框*/
+    }
+
+    li{
+        list-style-type: none;/* 去掉li前的点 */
+        float: left;/*将li设置成做浮动，变为联动*/
+    }
+    a{
+        display: block;/*将a变成块状*/
+        width: 100px;/*设置块的宽度*/
+        height: 40px;/*设置块的长度*/
+        font-family: Microsoft Yahei;
+        line-height: 50px;/*设置字体在块中的高度*/
+
+        margin: 0px 0px;/*块里的高宽通过margin设置*/
+        color: #fff;
+        text-align: center;/*字体居中*/
+        text-decoration: none;/*去掉下划线*/
+        font-size: 20px;
+    }
+    a:hover{
+        background-color: #c6c6c6;
+    }
+
+</style>
+</html>

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="zxx" class="no-js">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- Mobile Specific Meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Favicon-->
+    <link rel="shortcut icon" href="img/fav.png">
+    <!-- Author Meta -->
+    <meta name="author" content="colorlib">
+    <!-- Meta Description -->
+    <meta name="description" content="">
+    <!-- Meta Keyword -->
+    <meta name="keywords" content="">
+    <!-- meta character set -->
+    <meta charset="UTF-8">
+    <!-- Site Title -->
+    <title>关于我们</title>
+    <!-- Font Awesome Icons -->
+    <link th:href="@{/resources/Homepage/vendor/fontawesome-free/css/all.min.css}" rel="stylesheet" type="text/css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic'
+          rel='stylesheet' type='text/css'>
+    <!-- Plugin CSS -->
+    <link th:href="@{/resources/Homepage/vendor/magnific-popup/magnific-popup.css}" rel="stylesheet">
+    <!-- Theme CSS - Includes Bootstrap -->
+    <link  rel="stylesheet" th:href="@{/resources/Homepage/css/creative.min.css}">
+    <link  th:href="@{/resources/Homepage/css/linearicons.css}">
+    <link rel="stylesheet"
+          th:href="@{/resources/Homepage/css/font-awesome.min.css}">
+    <link rel="stylesheet"  th:href="@{/resources/Homepage/css/bootstrap.css}">
+    <link rel="stylesheet"  th:href="@{/resources/Homepage/css/magnific-popup.css}">
+    <link rel="stylesheet" th:href="@{/resources/Homepage/css/jquery-ui.css}">
+    <link rel="stylesheet"  th:href="@{/resources/Homepage/css/nice-select.css}">
+    <link rel="stylesheet"  th:href="@{/resources/Homepage/css/animate.min.css}">
+    <link rel="stylesheet"  th:href="@{/resources/Homepage/css/owl.carousel.css}">
+    <link rel="stylesheet"  th:href="@{/resources/Homepage/css/main.css}">
+</head>
+<body>
+<nav th:replace="multiplex :: nav">
+</nav>
+<section class="about-banner">
+    <div class="container">
+        <div class="row d-flex align-items-center justify-content-center ">
+
+            <div class="about-content col-lg-12" style="padding-top: 80px">
+                <h1 class="text-white">
+                    云 智 工 作 室
+                </h1>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End banner Area -->
+
+<!-- Start home-about Area -->
+<section class="home-about-area section-gap">
+    <div class="container">
+        <div class="row align-items-center justify-content-between">
+            <div class="col-lg-6 col-md-6 home-about-left">
+                <img class="img-fluid"  th:src="@{/resources/user/login/images/cloub.png}" alt="社团图片">
+            </div>
+            <div class="col-lg-5 col-md-6 home-about-right">
+                <h1 class="text-uppercase">社团资料</h1>
+                <p style="color: #0b0b0b">
+                    本工作室隶属于云智工作室，由长城公司提供技术支持，现位于汇森楼511室。实验室成立于2012年7月，是河南省高校首个云计算方向工作室。实验室内设施齐全并配有服务器，服务器维护由实验室内特定人员完成。
+                </p>
+                <p style="color: #0b0b0b">
+                    本工作室主要致力于大数据和云计算技术的学习研究，是科技园中首先涉足大数据和云计算方向的社团。因此本工作室对大数据和云计算技术有一定的研究深度和相对全面的学习资料。本工作室不限制成员的学习兴趣及发展方向，工作室除学习大数据和云计算技术的成员外，还有些成员正在学Python+人工智能、机器学习等相关技术。
+                </p>
+                <p style="color: #0b0b0b">
+                    工作室学习氛围浓厚，成员学习积极性高，已毕业学生中成功在腾讯、阿里等知名公司就业的学长学姐不在少数。
+                </p>
+            </div>
+            <!--<div class="col-lg-12 pt-60">-->
+
+
+            <!--</div>-->
+        </div>
+
+
+    </div>
+</section>
+
+<section class="timeline pb-120">
+    <div class="text-center" style="background-color: #00b3ee" align="center">
+        <div class="menu-content pb-70">
+            <div class="title text-center"style="padding-top: 65px">
+                <h1 class="mb-10">比赛及获奖情况</h1>
+                <h4 >每年均有成员参加全国,省,校级比赛并斩获殊荣</h4>
+            </div>
+        </div>
+    </div>
+
+
+    <div style="position:relative">
+        <div style="padding-top: 40px">
+
+        </div>
+        <ul>
+            <li>
+                <div class="content" onmouseover="a(1)" onmouseout="b(1)">
+                    <h4>
+                        <time>全国第五届大学生服务外包创新创业大赛团体三等奖</time>
+                    </h4>
+                    <p><b>项目名:</b> 南工云盘项目</p>
+                </div>
+                <div style="z-index: 999; position:absolute; left: -500px;top: -20px; display:none " id="1">
+                    <img   th:src="@{/resources/Homepage/img/Association/association_03_1.jpg}" alt="123" />
+                </div>
+            </li>
+
+            <li>
+                <div class="content" onmouseover="a(2)" onmouseout="b(2)">
+                    <!--<img class="img-fluid mx-auto d-block mb-30" src="/resources/Homepage/img/about/c-logo.png" alt="">-->
+                    <h4>
+                        <time>IBM BlueMix马拉松编程"在线论文搜索"校区一等奖</time>
+                    </h4>
+                    <p><b>时间:</b> 2015年</p>
+                </div>
+                <div style="z-index: 999; position:absolute; left: 50px;top: -50px ;display:none" id="2">
+                    <img   th:src="@{/resources/Homepage/img/Association/association_03_1.jpg}" alt="123" />
+                </div>
+            </li>
+            <li>
+                <div class="content" onmouseover="a(3)" onmouseout="b(3)">
+                    <h4>
+                        <time>校IT创新大赛"大数据在线日志分析系统"最佳开发奖</time>
+                    </h4>
+                    <p><b>时间:</b> 2016年</p>
+                </div>
+                <div style="z-index: 999; position:absolute; left: -500px;top: -50px; display:none" id="3">
+                    <img   th:src="@{/resources/Homepage/img/Association/association_03_1.jpg}" alt="123" />
+                </div>
+            </li>
+            <li>
+                <div class="content" onmouseover="a(4)" onmouseout="b(4)">
+                    <h4>
+                        <time>第九届河南省青年软件创新创业大赛二等奖</time>
+                    </h4>
+                    <p><b>项目名:</b> Hadoop大数据离线分析平台</p>
+                    <p><b>时间:</b> 2017年</p>
+                </div>
+                <div style="z-index: 999; position:absolute; left: 50px;top: -50px ;display:none" id="4">
+                    <img   th:src="@{/resources/Homepage/img/Association/association_03_1.jpg}" alt="123" />
+                </div>
+            </li>
+
+
+        </ul>
+    </div>
+</section>
+
+<footer th:replace="multiplex :: footer" ></footer>
+<!-- End brands Area -->
+<script language="javascript">
+    function a(a){
+
+        document.getElementById(a).style.display="block";
+    }
+    function b(a){
+        document.getElementById(a).style.display="none";
+    }
+
+</script>
+<!-- start footer Area -->
+<!-- End footer Area -->
+
+<script  th:src="@{/resources/Homepage/vendor/jquery/jquery.min.js}"></script>
+<script  th:src="@{/resources/Homepage/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+
+<!-- Plugin JavaScript -->
+<script  th:src="@{/resources/Homepage/vendor/jquery-easing/jquery.easing.min.js}"></script>
+<script  th:src="@{/resources/Homepage/vendor/magnific-popup/jquery.magnific-popup.min.js}"></script>
+
+<!-- Custom scripts for this template -->
+<script  th:src="@{/resources/Homepage/js/creative.min.js}"></script>
+<script   th:href="@{/resources/Homepage/js/vendor/jquery-2.2.4.min.js}"></script>
+<script  th:href="@{/resources/Homepage/js/popper.min.js}"></script>
+<script  th:href="@{/resources/Homepage/js/vendor/bootstrap.min.js}"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA"></script>
+<script  th:href="@{/resources/Homepage/js/easing.min.js}"></script>
+<script  th:href="@{/resources/Homepage/js/hoverIntent.js}"></script>
+<script  th:href="@{/resources/Homepage/js/superfish.min.js}"></script>
+<script  th:href="@{/resources/Homepage/js/jquery.ajaxchimp.min.js}"></script>
+<script  th:href="@{/resources/Homepage/js/jquery.magnific-popup.min.js}"></script>
+<script  th:href="@{/resources/Homepage/js/jquery.tabs.min.js}"></script>
+<script  th:href="@{/resources/Homepage/js/jquery.nice-select.min.js}"></script>
+<script  th:href="@{/resources/Homepage/js/isotope.pkgd.min.js}"></script>
+<script  th:href="@{/resources/Homepage/js/waypoints.min.js}"></script>
+<script  th:href="@{/resources/Homepage/js/jquery.counterup.min.js}"></script>
+<script  th:href="@{/resources/Homepage/js/simple-skillbar.js}"></script>
+<script  th:href="@{/resources/Homepage/js/owl.carousel.min.js}"></script>
+<script   th:href="@{/resources/Homepage/js/mail-script.js}"></script>
+<script th:href="@{/resources/Homepage/js/main.js}"></script>
+
+
+</body>
+</html>

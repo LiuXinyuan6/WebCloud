@@ -1,0 +1,81 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<link rel="icon" href="images/cloub.png" type="images/weibo.png" th:href="@{/resources/login/images/cloub.png}">
+<!-- Head -->
+<head>
+	<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+	<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+	<title>用户登录</title>
+
+	<!-- Meta-Tags -->
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+		<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+	<!-- //Meta-Tags -->
+		<script src="resources/login/js/limit.js"></script>
+	<!-- Style --> <link rel="stylesheet" href="css/style.css" type="text/css" media="all" th:href="@{/resources/login/css/style.css}">
+
+
+
+</head>
+<!-- //Head -->
+
+<!-- Body -->
+<body>
+	<!--标题-->
+	<h1 style="font-family: 楷体,serif">用户登录</h1>
+
+	<div class="container w3layouts agileits" >
+
+		<div class="login w3layouts agileits">
+
+			<form action="#" th:action="@{/login/user}" method="post">
+				<input type="text" Name="user_name" placeholder="用户名" required="">
+				<font color="red"> <span style="font-family: 仿宋" th:text="${errorMessage}" ></span></font>
+				<input type="password" Name="user_pwd" placeholder="密码" required="">
+
+			<!--验证码部分-->
+			<div style="margin:5px 0;">
+				<input type="text" style="width:112px;" name="code" placeholder="请输入验证码..."/>
+
+				<img id="img_code" src="./images/1.png" style="vertical-align:bottom;" alt="验证码" th:src="@{/login/createCode}"/>
+				[[${#servletContext.getContextPath()}]]
+			</div>
+
+			<ul class="tick w3layouts agileits">
+				<font color="red"> <span style="font-family: 仿宋;padding-left: 57%" th:text="${codeMessage}" ></span></font>
+				<li>
+					<input type="checkbox" id="brand1" value="">
+					<label for="brand1"><span></span>记住我</label>
+				</li>
+			</ul>
+
+			<div class="send-button w3layouts agileits">
+					<input type="submit" value="登 录">
+
+			</div>
+            </form>
+			<a href="#" th:href="@{/login/toRegist}" >还没有注册?点我现在注册!</a>
+			<div class="clear"></div>
+		</div><div class="copyrights">Collect from <a href="http://www.cssmoban.com/" >企业网站模板</a></div>
+
+		<div class="clear"></div>
+
+	</div>
+
+	<div class="footer w3layouts agileits">
+		<p> 云智工作室 <a href="http://www.cssmoban.com/" target="_blank" title=" 云智工作室"> 云智工作室</a> - Collect from <a href="http://www.cssmoban.com/" title=" 云智工作室" target="_blank"> 云智工作室</a></p>
+	</div>
+
+</body>
+<!-- //Body -->
+<script type="text/javascript">
+	$("#img_code").click(function () {
+		var src = $("#img_code").attr("src");
+		src = src +"?time="+Date.now();
+        $("#img_code").attr("src",src);
+    })
+</script>
+</html>

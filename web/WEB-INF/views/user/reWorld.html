@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>Personal</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta property="qc:admins" content="77103107776157736375" />
+    <meta property="wb:webmaster" content="c4f857219bfae3cb" />
+    <meta http-equiv="Access-Control-Allow-Origin" content="*" />
+    <meta http-equiv="Cache-Control" content="no-transform " />
+    <link rel="stylesheet" th:href="@{/resources/user/login/css/base.css}" type="text/css" />
+    <link rel="stylesheet" th:href="@{/resources/user/login/css/common-less(1).css}" type="text/css" />
+    <link rel="stylesheet" th:href="@{/resources/user/login/css/moco.min.css}" type="text/css" />
+    <link rel="stylesheet" th:href="@{/resources/user/login/css/common-less.css}" type="text/css" />
+    <link rel="stylesheet" th:href="@{/resources/user/login/css/profile-less.css}" type="text/css" />
+    <script th:src="@{/resources/user/login/js/jquery-1.8.0.min.js}"></script>
+    <script th:src="@{/resources/user/login/js/checkRepeat.js}"></script>
+    <script th:src="@{/resources/user/login/js/limit.js}"></script>
+    <script th:src="@{/resources/user/login/js/disable.js}"></script>
+
+
+</head>
+
+<body >
+<div id="main">
+
+    <div class="page-settings">
+        <div class="setting pb10">
+            <div class="nav-tabs pa">
+                <h class="baseinfo fl active">修改密码</h>
+
+                <div class="cb"></div>
+            </div>
+            <div class="contentBox">
+                <div class="formBox">
+                    <div id="setting-profile" class="setting-wrap setting-profile">
+                        <form id="profile" action="/edit/reSetPwd" method="post">
+
+                            <div class="wlfg-wrap clearfix">
+                                <label class="label-name" for="oldPass">请输旧密码</label>
+                                <div class="rlf-group">
+                                    <input type="text" name="oldPaw" id="oldPass"  autocomplete="off"  data-validate="require-nick"  class="moco-form-control"/>
+                                    <font color="red"> <span id="msg" style="font-family: 仿宋" th:text="${reSetMessage}"></span></font><br>
+                                    <p class="rlf-tip-wrap errorHint color-red" ></p>
+                                </div>
+                            </div>
+                            <div class="wlfg-wrap clearfix" >
+                            </div>
+
+                            <div class="wlfg-wrap clearfix"  style="display: none">
+                                <div class="rlf-group">
+                                    <input type="text" id="user_name" name="user_name" autocomplete="off"  data-validate="require-nick"  class="moco-form-control" th:value="${session.UserLogin.getUser_name()}"/>
+                                    <p class="rlf-tip-wrap errorHint color-red" ></p>
+                                </div>
+                            </div>
+
+                            <div class="wlfg-wrap clearfix" style="display: none" id="showNew">
+                                <label class="label-name" for="newPassword"  >请输新密码</label>
+                                <div class="rlf-group">
+                                    <input type="password" name="user_pwd" placeholder="密码应包含字母不小于八位数"  id="newPassword" autocomplete="off"  data-validate="require-nick"  class="moco-form-control" onblur="checkPassword()">
+                                    <font color="red"> <span id="limit" style="font-family: 仿宋" ></span></font><br>
+                                </div>
+                            </div>
+
+                            <div class="wlfg-wrap clearfix">
+                                <label class="label-name" for="profile-submit"></label>
+                                <div class="rlf-group">
+                                    <table>
+                                        <tr>
+                                            <td>
+                                                <span id="profile-submit"   hidefocus="true"  aria-role="button" class="rlf-btn-green btn-block profile-btn" onclick="findPass()">检测</span>
+                                            </td>
+                                            <td>
+                                                <input  type="submit" id="showButton" style="display: none" hidefocus="true"  aria-role="button" class="rlf-btn-green btn-block profile-btn">
+                                            </td>
+                                        </tr>
+
+
+                                    </table>
+
+                                </div>
+
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<div id="J_GotoTop" class="elevator">
+
+    <a th:href="@{#}" class="elevator-msg" title="回到顶部"><span>回到顶部</span><i class="icon-feedback"></i></a>
+    <a th:href="@{#}" class="elevator-app" title="QQ"><span>QQ</span>
+        <i class="icon-appdownload"></i>
+        <div class="elevator-app-box"><img th:src="@{/resources/user/login/images/yunQ.png}"></div>
+    </a>
+    <a th:href="@{#}" class="elevator-weixin no-goto" id="js-elevator-weixin" title="微信"><span>微信</span>
+        <i class="icon-wxgzh"></i>
+        <div class="elevator-weixin-box"><img th:src="@{/resources/user/login/images/yun.jpg}"></div>
+    </a>
+    <a href="3" class="elevator-top no-goto" style="display:none" title="顶部" id="backTop"><i class="icon-up2"></i></a>
+</div>
+
+
+
+<!--script-->
+<script src="../ssologin.js?v=2.0"></script>
+<script type="text/javascript" src="../sea.js"></script>
+<script type="text/javascript" src="../sea_config.js?v=201612141100"></script>
+<script type="text/javascript">seajs.use("../"+OP_CONFIG.module+"/"+OP_CONFIG.page);</script>
+
+
+<div style="display: none">
+    <script type="text/javascript">
+        var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+        document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Ff0cfcccd7b1393990c78efdeebff3968' type='text/javascript'%3E%3C/script%3E"));
+        (function (d) {
+            window.bd_cpro_rtid="rHT4P1c";
+            var s = d.createElement("script");s.type = "text/javascript";s.async = true;s.src = location.protocol + "//cpro.baidu.com/cpro/ui/rt.js";
+            var s0 = d.getElementsByTagName("script")[0];s0.parentNode.insertBefore(s, s0);
+        })(document);
+    </script>
+    <script>
+        (function(){
+            var bp = document.createElement('script');
+            bp.src = '//push.zhanzhang.baidu.com/push.js';
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(bp, s);
+        })();
+    </script>
+</div>
+</body>
+</html>

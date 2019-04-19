@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+    <!--扫描器-->
+    <context:component-scan base-package="cn.cloud.controller"></context:component-scan>
+    <!--默认创建RequestMappingHandlerMapping，RequestMappingHandlerAdapter和提供json支持
+        无法扩展
+    -->
+
+    <mvc:annotation-driven>
+
+    </mvc:annotation-driven>
+    <!--配置主页的映射-->
+    <mvc:view-controller path="/homepage" view-name="index"></mvc:view-controller>
+    <mvc:view-controller path="/homepage2" view-name="user/index_02"></mvc:view-controller>
+    <!--配置登录页面的跳转-->
+    <mvc:view-controller path="/login/user/toLogin" view-name="user/user_login"></mvc:view-controller>
+    <!--注册页面的跳转-->
+    <mvc:view-controller path="/login/toRegist" view-name="user/regist"></mvc:view-controller>
+    <!--管理员登录页面的转条-->
+    <mvc:view-controller path="/login/admin/toLogin" view-name="admin/admin_login"></mvc:view-controller>
+    <!--社团信息介绍的页面转条-->
+    <mvc:view-controller path="/homepage/about" view-name="about"></mvc:view-controller>
+
+    <!--配置文件资源模块页面-->
+    <!--文件上传页面-->
+    <mvc:view-controller path="/rsf/upload" view-name="user/fileupload"></mvc:view-controller>
+    <!--文件下载页面-->
+    <mvc:view-controller path="/rsf/download" view-name="user/filedownload"></mvc:view-controller>
+
+
+    <!--配置签到模块页面-->
+    <!--配置sign界面映射-->
+    <mvc:view-controller path="/cloud/sign" view-name="sign/sign"></mvc:view-controller>
+    <!--配置showSign界面映射-->
+    <mvc:view-controller path="/cloud/showSign" view-name="sign/showSign"></mvc:view-controller>
+
+
+    <!--配置链接资源模块页面-->
+    <!--资源链接添加界面-->
+    <mvc:view-controller path="/cloud/addLink" view-name="resourcesLink/add_link"/>
+    <!--资源链接个人展示界面-->
+    <mvc:view-controller path="/cloud/showLink" view-name="resourcesLink/show_link"/>
+    <!--管理员管理资源界面-->
+    <mvc:view-controller path="/cloud/Mlink" view-name="resourcesLink/manageLink"/>
+    <!--配置后台管理系统的页面跳转-->
+    <mvc:view-controller path="admin/index" view-name="admin/admin_index"/>
+    <mvc:view-controller path="admin/showSign" view-name="admin/admin_showsign"/>
+    <mvc:view-controller path="admin/exportSign" view-name="admin/admin_exportsign"/>
+    <!--<mvc:view-controller path="admin/showLink" view-name="admin/admin_showlink"/>-->
+    <!--<mvc:view-controller path="admin/manageLink" view-name="admin/admin_managelink"/>-->
+    <mvc:view-controller path="admin/showFile" view-name="admin/admin_showfile"/>
+    <mvc:view-controller path="admin/manageFile" view-name="admin/admin_managefile"/>
+    <mvc:view-controller path="admin/manageUser" view-name="admin/admin_manageuser"/>
+    <mvc:view-controller path="admin/manageAdmin" view-name="admin/admin_manageadmin"/>
+    <mvc:view-controller path="admin/adminMessage" view-name="admin/admin_adminmessage"/>
+
+    <!--个人资料页面-->
+    <mvc:view-controller path="/homepage/myspace" view-name="/user/myspace"/>
+    <!--修改密码页面-->
+    <mvc:view-controller path="/homepage/reWorld" view-name="/user/reWorld"/>
+    <!--个人中心页面-->
+    <mvc:view-controller path="/homepage/test" view-name="/user/test"/>
+    <!--配置视图解析器:解析出真正的物理视图
+       后台返回逻辑视图:index
+       解析出真正的物理视图:前缀+逻辑视图+后缀 =====>/WEB-INF/views/homePage1.html
+   -->
+
+
+    <bean id="templateResolver" class="org.thymeleaf.spring4.templateresolver.SpringResourceTemplateResolver">
+        <property name="prefix" value="/WEB-INF/views/" />
+        <property name="suffix" value=".html" />
+        <property name="templateMode" value="HTML" />
+        <property name="cacheable" value="false" />
+        <property name="characterEncoding" value="UTF-8"/><!--不加会乱码-->
+    </bean>
+
+    <bean id="templateEngine" class="org.thymeleaf.spring4.SpringTemplateEngine">
+        <property name="templateResolver" ref="templateResolver" />
+    </bean>
+    <bean class="org.thymeleaf.spring4.view.ThymeleafViewResolver">
+        <property name="templateEngine" ref="templateEngine" />
+        <!--解决中文乱码-->
+        <property name="characterEncoding" value="UTF-8"/>
+    </bean>
+    <!--配置SpringMVC文件上传解析器-->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="maxUploadSize" value="20971520"></property>
+    </bean>
+    <!--配置拦截器-->
+    <mvc:interceptors>
+            <mvc:interceptor>
+                <mvc:mapping path="/**"/>
+                <!--不拦截的路径-->
+                <!--登录-->
+                <mvc:exclude-mapping path="/login/**"></mvc:exclude-mapping>
+                <!--错误页面-->
+                <mvc:exclude-mapping path="/error/**"></mvc:exclude-mapping>
+                <!--静态资源-->
+                <mvc:exclude-mapping path="/resources/**"></mvc:exclude-mapping>
+                <!--主页-->
+                <mvc:exclude-mapping path="/homepage/**"></mvc:exclude-mapping>
+                <!--注册-->
+                <mvc:exclude-mapping path="/json/register"></mvc:exclude-mapping>
+                <!--后台页面-->
+
+                <!--每个模块的后台管理的放行-->
+                <mvc:exclude-mapping path="/*/admin/**"></mvc:exclude-mapping>
+                <!--管理页面的放行-->
+                <mvc:exclude-mapping path="/admin/**"></mvc:exclude-mapping>
+                <bean id="myInterceptors" class="cn.cloud.interceptors.ReceptionUserInterceptors"></bean>
+            </mvc:interceptor>
+        <mvc:interceptor>
+            <mvc:mapping path="/*/admin/**"/>
+            <mvc:mapping path="/admin/**"></mvc:mapping>
+            <mvc:exclude-mapping path="/login/**"></mvc:exclude-mapping>
+            <bean id="adminInterceptors" class="cn.cloud.interceptors.ReceptionAdminInterceptors"></bean>
+        </mvc:interceptor>
+    </mvc:interceptors>
+    <mvc:resources mapping="/resources/**" location="/resources/"></mvc:resources>
+
+</beans>

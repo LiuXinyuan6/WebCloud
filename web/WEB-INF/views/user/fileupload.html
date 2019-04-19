@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="icon" href="images/cloub.png" type="images/weibo.png" th:href="@{/resources/login/images/cloub.png}">
+    <title>上传至Web</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 引入 Bootstrap -->
+    <!-- 新 Bootstrap 核心 CSS 文件 -->
+    <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="bootstrap-fileinput-master/js/fileinput.min.js" th:src="@{/resources/file/bootstrap-fileinput-master/js/fileinput.min.js}"></script>
+    <script src="bootstrap-fileinput-master/js/locales/zh.js" th:src="@{/resources/file/bootstrap-fileinput-master/js/locales/zh.js}"></script>
+    <link rel="stylesheet" href="bootstrap-fileinput-master/css/fileinput.min.css" th:href="@{/resources/file/bootstrap-fileinput-master/css/fileinput.min.css}">
+    <link rel="stylesheet" href="bootstrap-fileinput-master/css/fileinput-rtl.min.css" th:href="@{/resources/file/bootstrap-fileinput-master/css/fileinput-rtl.min.css}">
+    <!-- HTML5 Shiv 和 Respond.js 用于让 IE8 支持 HTML5元素和媒体查询 -->
+    <!-- 注意： 如果通过 file://  引入 Respond.js 文件，则该文件无法起效果 -->
+</head>
+<body class=" bg-success">
+<div class="container col-8 row-8">
+    <div class="container-fluid col-5 row-5 bg-info">
+        <form id="form" action=""  th:action="@{/json/upload/file}" method="post" enctype="multipart/form-data">
+            <div >
+                <div class="panel panel-primary">
+                    <div class="panel-body col-5 row-5" style="padding-top: 0px;padding-top: 0px;padding-right: 0px;">
+                        <div >
+                            <input   width="20%" id="input-id" class="file-loading" name="files" multiple type="file" data-show-caption="true" accept="*/*">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-10 row-9">
+                <input type="text" class="form-control" id="describe" name="describe"
+                       placeholder="请输入文件的描述" maxlength="30">
+            </div>
+            <div >
+                <a href="" th:href="@{/homepage}" class="btn btn-primary btn-lg">返回</a>
+                <button  type="button" class="btn btn-primary btn-lg pull-right" onclick="upload()">上传</button>
+            </div>
+
+        </form>
+    </div>
+
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        // var describe = $("#describe").attr("placeholder")
+        // alert(describe)
+
+            initFileInput("input-id");
+
+            // alert($("#input-id").attr());
+
+    })
+    function initFileInput(ctrlName,describe) {
+
+        var control = $('#' + ctrlName);0
+        //var extraParams = {"businesscode":businesscode,"businessobjectid"：businessobjectid,"handletype":handletype,"version":version};
+        var url = $("#form").attr("action");
+
+        control.fileinput({
+            language: 'zh', //设置语言
+            uploadUrl: url,//任意写，因为是同步上传所以url为任意值，目的是出现删除按钮
+            allowedFileExtensions: ['jar', 'jpg', 'png', 'gif', 'bmp', 'txt', 'html', 'xml', 'pdf', 'doc', 'xls', 'ppt', 'docx', 'xlsx', 'pptx', 'zip', 'rar', 'mp3', 'mov', 'avi', 'mpp'],//接收的文件后缀
+            maxFilesNum: 5,//上传最大的文件数量                  //uploadExtraData:function(previewId, index) { return extraParams; },
+            uploadAsync: false, //默认异步上传
+            showUpload: false, //是否显示上传按钮
+            showRemove: false, //显示移除按钮
+            showPreview: true, //是否显示预览
+            showCaption: false,//是否显示标题
+            browseClass: "btn btn-primary", //按钮样式
+            dropZoneEnabled: true,//是否显示拖拽区域
+            //minImageWidth: 50, //图片的最小宽度
+            //minImageHeight: 50,//图片的最小高度
+            //maxImageWidth: 300,//图片的最大宽度
+            //maxImageHeight: 200,//图片的最大高度
+            maxFileSize: 20 * 1048,//单位为kb，如果为0表示不限制文件大小
+            //minFileCount: 0,
+            maxFileCount: 5, //表示允许同时上传的最大文件个数
+            multipart: true,
+            enctype: 'multipart/form-data',
+            validateInitialCount: true,
+            previewFileIcon: "<i class='glyphicon glyphicon-king'></i>",
+            msgFilesTooMany: "选择上传的文件数量({n}) 超过允许的最大数值{m}！",
+            layoutTemplates: {
+                actionUpload: ''    //设置为空可去掉上传按钮
+                //actionDelete:''  //设置为空可去掉删除按钮
+            }
+        })
+        // }).on('filepreupload', function(event, data, previewId, index) {
+        //     //上传中
+        //     alert(index);
+        //     console.log('文件正在上传');
+        // }).on("fileuploaded", function (event, data, previewId, index) {
+        //     //一个文件上传成功
+        //     alert(index)
+        //     console.log('文件上传成功！'+data.id);
+        // }).on('fileerror', function(event, data, msg) {  //一个文件上传失败
+        //     console.log('文件上传失败！'+data.id);
+        // })
+
+    }
+    $("#input-id").on("filebatchuploadsuccess",function (event, data, previewId, index) {
+            // alert(data.files[0].name)
+        }
+    )
+    $("#input-id").on("filebatchselected", function(event, files) {
+
+    });
+
+    function upload(){
+        var describe= $("#describe").val();
+        $("#input-id").fileinput({uploadExtraData:function(previewId, index){   //额外参数 返回json数组
+            return {
+                'describe':describe
+            };
+        },
+        }).fileinput('enable').fileinput("upload");
+    }
+</script>
+</body>
+</html>

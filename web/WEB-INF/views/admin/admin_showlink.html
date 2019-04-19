@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>云智工作室后台管理系统</title>
+    <!--meta-->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Easy Admin Panel Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
+    Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+    <!--css-->
+    <link href="cloub.png" rel="icon"  type="images/weibo.png" th:href="@{/resources/login/images/cloub.png}">
+    <link href="bootstrap.min.css" rel='stylesheet' type='text/css' th:href="@{/resources/admin/css/bootstrap.min.css}"/>
+    <link href="style.css" rel='stylesheet' type='text/css' th:href="@{/resources/admin/css/style.css}"/>
+    <link href="font-awesome.css" rel="stylesheet" th:href="@{/resources/admin/css/font-awesome.css}">
+    <link href="icon-font.min.css" rel="stylesheet"  type='text/css' th:href="@{/resources/admin/css/icon-font.min.css}"/>
+    <link href="animate.css" rel="stylesheet" type="text/css" media="all" th:href="@{/resources/admin/css/animate.css}">
+    <link href='http://fonts.useso.com/css?family=Cabin:400,400italic,500,500italic,600,600italic,700,700italic' rel='stylesheet' type='text/css'>
+    <link href="sweet-alert.css" rel="stylesheet" th:href="@{/resources/admin/css/sweet-alert.css}">
+    <!--javascript-->
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <script src="wow.min.js" th:src="@{/resources/admin/js/wow.min.js}"></script>
+    <script>
+        new WOW().init();
+    </script>
+    <script src="Chart.js" th:src="@{/resources/admin/js/Chart.js}"></script>
+    <script src="jquery-1.10.2.min.js" th:src="@{/resources/admin/js/jquery-1.10.2.min.js}"></script>
+    <script src="sweet-alert.min.js" th:src="@{/resources/admin/js/sweet-alert.min.js}"></script>
+
+
+</head>
+
+<body class="sticky-header left-side-collapsed">
+<!--页面容器-->
+<section>
+    <!--左侧导航栏-->
+    <div th:replace="/admin/navigate :: navigate_left"></div>
+    <!--中央容器-->
+    <div class="main-content">
+        <!--头部导航栏-->
+        <div th:replace="/admin/navigate :: navigate_top"></div>
+        <!--中心内容容器-->
+        <div id="page-wrapper">
+
+        </div>
+        <!--中心内容容器-->
+    </div>
+
+    <div th:replace="/admin/navigate :: navigate_bottom"></div>
+</section>
+<!--不要动下边的引用-->
+<script src="jquery.nicescroll.js" th:src="@{/resources/admin/js/jquery.nicescroll.js}"></script>
+<script src="scripts.js" th:src="@{/resources/admin/js/scripts.js}"></script>
+<script src="bootstrap.min.js" th:src="@{/resources/admin/js/bootstrap.min.js}"></script>
+
+</body>
+</html>

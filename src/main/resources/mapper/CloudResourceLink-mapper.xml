@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="cn.cloud.dao.CloudResourceLinkDao">
+
+    <insert id="addLink" parameterType="cn.cloud.domain.CloudResourceLink">
+
+        insert into cloud_resource_link(srcl_name, srcl_link, srcl_pwd, srcl_type, user_id,srcl_status, srcl_date)
+        values(#{srcl_name},#{srcl_link},#{srcl_pwd},#{srcl_type},#{user_id},#{srcl_status},#{srcl_date})
+    </insert>
+
+    <select id="show_per_link" parameterType="java.lang.Integer" resultType="cn.cloud.domain.CloudResourceLink">
+        select * from cloud_resource_link where user_id=#{user_id}
+    </select>
+
+    <select id="searchLinkAll" resultType="cn.cloud.domain.CloudResourceLink">
+        select * from cloud_resource_link where srcl_status=1
+    </select>
+
+
+    <select id="searchLink" resultType="cn.cloud.domain.CloudResourceLink">
+        select * from cloud_resource_link where srcl_status=0
+    </select>
+
+
+    <delete id="deleteLink" parameterType="java.lang.String">
+        delete from cloud_resource_link where srcl_id=#{srcl_id}
+    </delete>
+
+
+    <select id="searchLinkByLink" resultType="cloudResourceLink" parameterType="java.lang.String">
+        select * from cloud_resource_link where srcl_link=#{link}
+    </select>
+
+
+    <update id="updateLink" parameterType="java.lang.Integer">
+        update cloud_resource_link  set srcl_status=1 where srcl_id=#{srcl_id}
+    </update>
+
+</mapper>

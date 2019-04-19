@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:border-radius="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=2.0, user-scalable=yes"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="icon" href="images/cloub.png" type="images/weibo.png" th:href="@{/resources/login/images/cloub.png}">
+    <title>云智考勤</title>
+
+
+</head>
+<body style="background-color: #f1f1f1;background-image: url('/resources/sign/bg-masthead.jpg'); background-size: 100%;"
+      onload="initClock();">
+
+<ul class=daohang>
+    <li><a href="/homepage" style="color: black">首页</a></li>
+    <li><a href="" style="color: black">签到</a></li>
+    <li><a href="/cloud/showSign" style="color: black">考勤</a></li>
+
+    <font style="font-family: 楷体;color:#cce5ff; text-align: center;" size="6">
+        <div id="box" style="margin:auto">
+
+        </div>
+    </font>;
+</ul>
+<br>
+<div style="border: 0px solid #000;height: 80%;width:80%;margin: auto;" id="topheader">
+    <div style="border: 0px solid #000;height: 45%;width:29%;margin: auto;">
+        <form name="sumitFrom" th:action="@{/sign/addSign}" style="margin-bottom: auto" method="post">
+            <input type="hidden" class="btn btn-primary" name="user_id" th:value="${session.UserLogin.getUser_id()}">
+            <!-- th:value 接收其他界面传过来的user_id -->
+            <br><br><br><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img th:src="@{/resources/sign/sign.jpg}"
+                                                                  style="width:80px; height:80px; " onclick="sumitFun()" title="点击进行打卡"/>
+            <!--<input id="sign" style="BACKGROUND-COLOR: transparent;font-family:'Cordia New';background:none;border:none;font-size: 35px;color:#0d152c" type="" class="btn btn-primary" value="签到">-->
+        </form>
+
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div style="opacity: 0.5;margin: auto;font-family:楷体;font-size: 37px;height:80%;width: 75%;color:red">
+        &nbsp;&nbsp;&nbsp;&nbsp;‘ 每天打卡一次，记录美好一天 ’<br><br><br>
+        &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
+            style="size:15px;width:80%;height:75%;color:orangered;margin: auto" id="errorInfo"
+            th:text="${error}"></span>
+    </div>
+
+
+</div>
+
+
+</body>
+<script>
+
+    function sumitFun() {
+        if (confirm("确认打卡")) {
+            sumitFrom.submit();
+            return true;
+
+        } else {
+            return false;
+        }
+
+
+    }
+
+    var timer; //定时器对象
+    function initClock() {
+        showTime();
+        timer = window.setInterval("showTime()", 1000);
+    }
+
+    function showTime() {
+
+        var d = new Date();
+        var year = d.getFullYear();
+        var month = d.getMonth();
+        var day = d.getDate();
+        var hours = d.getHours();
+        var minutes = d.getMinutes();
+        var seconds = d.getSeconds();
+        month++;
+        month = month < 10 ? "0" + month : month;
+        day = day < 10 ? "0" + day : day;
+        hours = hours < 10 ? "0" + hours : hours;
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+
+        var time = year + "年" + month + "月" + day + "日  " + hours + ":" + minutes + ":" + seconds;
+        document.getElementById("box").innerHTML = time;
+    }
+
+    showTime();
+
+</script>
+<style type="text/css">
+
+
+    ul{/*设置导航栏的框框*/
+        margin: 15px auto;/*框框整体的位置，30px是指离网页的顶部和下部的距离，auto控制的是左右距离为自动调节*/
+        width: 800px;/*框框的宽度*/
+        height: 100%;/*框框的长度*/
+        padding: 0px;/*将框框的padding设置为零，不然会导致框框里的内容与框边缘有间隔*/
+        border:0px solid #000;/*添加边框*/
+    }
+    li{
+        list-style-type: none;/* 去掉li前的点 */
+        float: left;/*将li设置成做浮动，变为联动*/
+    }
+    a{
+        display: block;/*将a变成块状*/
+        width: 100px;/*设置块的宽度*/
+        height: 40px;/*设置块的长度*/
+        font-family: Microsoft Yahei;
+        line-height: 50px;/*设置字体在块中的高度*/
+
+        margin: 0px 0px;/*块里的高宽通过margin设置*/
+        color: #fff;
+        text-align: center;/*字体居中*/
+        text-decoration: none;/*去掉下划线*/
+        font-size: 20px;
+    }
+    a:hover{
+        background-color: #c6c6c6;
+    }
+</style>
+</html>
+</title>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--左侧导航栏start-->
+<div class="left-side sticky-left-side" th:fragment="navigate_left">
+    <!--左上角logo start-->
+    <div class="logo">
+        <h1><a href="index.html" th:href="@{/admin/index}">云智<span>工作室</span></a></h1>
+    </div>
+    <div class="logo-icon text-center">
+        <a href="index.html" th:href="@{/admin/index}"><i class="lnr lnr-home"></i> </a>
+    </div>
+    <!--左上角logo end-->
+
+    <!--左侧导航栏中的图标(从第二个开始)start-->
+    <div class="left-side-inner">
+        <ul class="nav nav-pills nav-stacked custom-nav">
+            <!--第一个图标-->
+            <li class="menu-list"><a href="#"><i class="lnr lnr-chart-bars"></i> <span>签到情况</span></a>
+                <ul class="sub-menu-list">
+                    <li><a href="showsign" th:href="@{/admin/showSign}">查看出勤</a> </li>
+                    <li><a href="exportsign" th:href="@{/admin/exportSign}">导出报表</a></li>
+                </ul>
+            </li>
+            <!--第二个图标-->
+            <li class="menu-list"><a href="#"><i class="lnr lnr-link"></i> <span>链接管理</span></a>
+                <ul class="sub-menu-list">
+                    <li><a href="showlink" th:href="@{/admin/showLink}">查看链接</a> </li>
+                    <li><a href="exportsign" th:href="@{/rsl/admin/manage}">管理链接</a></li>
+                </ul>
+            </li>
+            <!--第三个图标-->
+            <li class="menu-list"><a href="#"><i class="lnr lnr-file-empty"></i> <span>文件管理</span></a>
+                <ul class="sub-menu-list">
+                    <li><a href="showfile" th:href="@{/admin/showFile}">查看文件</a> </li>
+                    <li><a href="managefile" th:href="@{/admin/manageFile}">审核文件</a></li>
+                </ul>
+            </li>
+            <!--第四个图标-->
+            <li class="menu-list"><a href="#"><i class="lnr lnr-users"></i> <span>角色管理</span></a>
+                <ul class="sub-menu-list">
+                    <li><a href="manageuser" th:href="@{/admin/manageUser}">普通角色</a> </li>
+                    <li><a href="manageadmin" th:href="@{/admin/manageAdmin}">管理员角色</a></li>
+                </ul>
+            </li>
+            <!--第五个图标-->
+            <li class="menu-list"><a href="#"><i class="lnr lnr-envelope"></i> <span>我的邮箱</span></a>
+                <ul class="sub-menu-list">
+                    <li><a href="javascript:void(0);" onclick="emailMessage()">未读信息</a> </li>
+                    <li><a href="javascript:void(0);" onclick="emailMessage()">已读信息</a></li>
+                </ul>
+            </li>
+            <script>
+                function emailMessage() {
+                    swal("尚未开发，敬请期待！","亲，不要着急哦！","info");
+                }
+            </script>
+        </ul>
+    </div>
+    <!--左侧导航栏中的图标(从第二个开始)end-->
+</div>
+<!--左侧导航栏end-->
+
+
+<!--头部导航start-->
+<div class="header-section" th:fragment="navigate_top">
+    <!--左侧导航栏模式切换按钮start-->
+    <a class="toggle-btn  menu-collapsed"><i class="fa fa-bars"></i></a>
+    <!--左侧导航栏模式切换按钮end-->
+
+    <!--头部导航栏菜单按钮start-->
+    <div class="menu-right">
+        <div class="user-panel-top">
+
+            <!--右侧-->
+            <div class="profile_details">
+                <ul>
+                    <li class="dropdown profile_details_drop">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                            <div class="profile_img">
+                                <span style="background:url(/resources/admin/images/1.jpg) no-repeat center"> </span>
+                                <div class="user-name">
+                                    <p>云智&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>管理员</span></p>
+                                </div>
+                                <i class="lnr lnr-chevron-down"></i>
+                                <i class="lnr lnr-chevron-up"></i>
+                                <div class="clearfix"></div>
+                            </div>
+                        </a>
+                        <ul class="dropdown-menu drp-mnu">
+                            <li> <a href="adminMessage" th:href="@{/admin/adminMessage}"><i class="fa fa-user"></i>个人中心</a> </li>
+                            <li> <a href="javascript:void(0);" onclick="logOut(this)" ><i class="fa fa-sign-out"></i>注销</a> </li>
+                        </ul>
+                        <script>
+                            function logOut(a) {
+                                swal({
+                                    title: "确定要注销吗？",
+                                    text: "注销后需要重新登录才能访问此页！",
+                                    type: "warning",
+                                    showCancelButton: true,
+                                    cancelButtonText:"取消",
+                                    confirmButtonColor: "#DD6B55",
+                                    confirmButtonText: "确定",
+                                    closeOnConfirm: false
+                                },function (isConfirm) {
+                                    if(isConfirm){
+                                        swal("注销成功", "即将返回至登录页面", "success");
+                                        a.href="/login/adminLogOut";
+                                        a.click();
+                                    }
+                                });
+                            }
+                        </script>
+                    </li>
+                    <div class="clearfix"></div>
+                </ul>
+            </div>
+            <!--清除固定-->
+            <div class="clearfix"></div>
+        </div>
+    </div>
+    <!--头部导航栏菜单按钮end -->
+</div>
+<!--头部导航end-->
+
+
+<!--底部版权信息start-->
+<footer th:fragment="navigate_bottom">
+    <p>版权所有 &copy;  <a href="http://www.cloudweb.com/" target="_blank" title="cloud" th:href="@{/admin/index}">云智工作室</a></p>
+</footer>
+<!--底部版权信息end-->
+
+</body>
+</html>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+        <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="cn.cloud.dao.CloudSignDao">
+    <select id="findMonthSign"  resultType="cn.cloud.domain.CloudSign" parameterType="String">
+        select * from cloud_sign where user_id = #{user_id}
+    </select>
+    <select id="judgeSign" resultType="cn.cloud.domain.CloudSign"  parameterType="String">
+        select * from cloud_sign where user_id = #{user_id} and sign_status=#{sign_status}
+    </select>
+    <insert id="addSign" parameterType="cn.cloud.domain.CloudSign">
+     insert into cloud_sign values (#{user_id},#{sign_date},#{sign_status})
+    </insert>
+    <select id="exportSign" resultType="HashMap" parameterType="String">
+        select cloud_user.user_name,cloud_sign.sign_status
+        from cloud_user
+            LEFT JOIN (select * from cloud_sign where sign_date between #{firstTime} and #{lastTime}) as cloud_sign
+                on cloud_user.user_id=cloud_sign.user_id
+        where cloud_user.user_status=1
+        order by cloud_user.user_stu_id,cloud_sign.sign_status
+    </select>
+    <select id="showMonthChart" resultType="HashMap" parameterType="String">
+        SELECT user_real_name,user_stu_id,sign_status
+        from cloud_user,
+            (select * from cloud_sign where sign_date BETWEEN #{firstTime} and #{lastTime})cloud_sign
+        where cloud_user.user_id=cloud_sign.user_id and cloud_user.user_status=1
+        ORDER BY sign_status
+    </select>
+</mapper>

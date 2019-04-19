@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <title>Adminity - Tables</title>
+    <link rel="shortcut icon" href="favicon.gif">
+    <!---CSS Files-->
+    <link rel="stylesheet" th:href="@{/resources/CloudResourceLink/css/master.css}">
+    <link rel="stylesheet" th:href="@{/resources/CloudResourceLink/css/tables.css}">
+    <!---jQuery Files-->
+    <script  th:src="@{/resources/CloudResourceLink/js/jquery-1.7.1.min.js}"></script>
+    <script th:src="@{/resources/CloudResourceLink/js/jquery-ui-1.8.17.min.js}"></script>
+    <script th:src="@{/resources/CloudResourceLink/js/styler.js}"></script>
+    <script th:src="@{/resources/CloudResourceLink/js/jquery.tipTip.js}"></script>
+    <script th:src="@{/resources/CloudResourceLink/js/colorpicker.js}"></script>
+    <script th:src="@{/resources/CloudResourceLink/js/sticky.full.js}"></script>
+    <script th:src="@{/resources/CloudResourceLink/js/global.js}"></script>
+    <script th:src="@{/resources/CloudResourceLink/js/jquery.dataTables.min.js}"></script>
+
+</head>
+<body>
+
+
+<div class="top-bar">
+    <ul id="nav">
+        <li id="user-panel">
+            <img th:src="@{/resources/login/images/cloub.png}" id="usr-avatar" alt="" />
+            <div id="usr-info">
+                <font style="font-family: 楷体;color:#d8e6e0; text-align: center;" size="2">
+                    &nbsp;&nbsp;&nbsp;&nbsp;欢迎您：<span th:text="${session.UserLogin.getUser_real_name()}"></span><br/>
+                    &nbsp;&nbsp;&nbsp;&nbsp;(*^__^*)
+                </font>
+            </div>
+        </li>
+        <li>
+            <ul id="top-nav">
+                <li class="nav-item">
+                    <a href="/homepage"><img th:src="@{/resources/CloudResourceLink/images/nav/dash.png}" alt="" /><p>个人中心</p></a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="#" th:href="@{/rsl/searchAll}"><img th:src="@{/resources/CloudResourceLink/images/nav/tb-active.png}" alt="" /><p>资源链接</p></a>
+                </li>
+                <li class="nav-item">
+                    <a href="calendar.html" th:href="@{/cloud/sign}">
+                        <img th:src="@{/resources/CloudResourceLink/images/nav/cal.png}" alt="" /><p>考勤</p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="filemanager.html" th:href="@{/rsf/upload}"><img th:src="@{/resources/CloudResourceLink/images/nav/flm.png}" alt="" /><p>文件上传</p></a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="filemanager.html" th:href="@{/rsf/download}"><img th:src="@{/resources/CloudResourceLink/images/nav/flm.png}" alt="" /><p>文件下载</p></a>
+                </li>
+
+
+            </ul>
+        </li>
+    </ul>
+</div>
+
+<!--- CONTENT AREA -->
+
+<div class="content container_12">
+
+
+    <div class="box grid_12">
+        <div class="box-head"><h2>我的分享</h2></div>
+        <div class="box-content no-pad">
+            <ul class="table-toolbar">
+
+                <li><a href="/cloud/addLink"><img th:src="@{/resources/CloudResourceLink/images/icons/basic/plus.png}" alt="" /> Add</a></li>
+
+               <!-- <li><a href="#"><img th:src="@{/resources/CloudResourceLink/images/icons/basic/delete.png}" alt="" /> Remove</a></li>
+                <li><a href="#"><img th:src="@{/resources/CloudResourceLink/images/icons/basic/save.png}" alt="" /> Save</a></li>
+                <li><a href="#"><img th:src="@{/resources/CloudResourceLink/images/icons/basic/print.png}" alt="" /> Print</a></li>
+                <li><a href="#"><img th:src="@{/resources/CloudResourceLink/images/icons/basic/up.png}" alt="" /> Ascending</a></li>
+                <li><a href="#"><img th:src="@{/resources/CloudResourceLink/images/icons/basic/down.png}" alt="" /> Descending</a></li>
+          -->  </ul>
+            <table class="display" id="dt2">
+                <thead>
+                <tr>
+                    <th>序号</th>
+                    <th>链接编号</th>
+                    <th>链接名称</th>
+                    <th>链接地址</th>
+                    <th>链接密码</th>
+                    <th>链接类型</th>
+                    <th>链接状态</th>
+                    <th>上传时间</th>
+                    <th>管理</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="link,linkStat :${Link}">
+                    <td th:text="${linkStat.count}">0 </td>
+                    <td th:text="${link.getSrcl_id()}">0 </td>
+                    <td th:text="${link.getSrcl_name()}">0 </td>
+                    <td th:text="${link.getSrcl_link()}">0 </td>
+                    <td th:text="${link.getSrcl_pwd()}">0 </td>
+                    <td th:text="${link.getSrcl_type()}">0 </td>
+                    <td th:text="${link.getSrcl_status()!=0 ? '已审核':'未审核'}">0 </td>
+                    <td th:text="${#dates.format(link.getSrcl_date(), 'yyyy-MM-dd HH:mm')}">0 </td>
+                    <td><a  th:href="@{/rsl/deleteLink(srcl_id=${link.getSrcl_id()})}" th:title="点击删除" onclick="sumitFun()">删除</a> </td>
+
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="box grid_12">
+        <div class="box-head"><h2>全部链接</h2></div>
+        <div class="box-content no-pad">
+            <!--<ul class="table-toolbar">
+                <li><a href="#"><img th:src="@{/resources/CloudResourceLink/images/icons/basic/plus.png}" alt="" /> Add</a></li>
+                <li><a href="#"><img th:src="@{/resources/CloudResourceLink/images/icons/basic/delete.png}" alt="" /> Remove</a></li>
+                <li><a href="#"><img th:src="@{/resources/CloudResourceLink/images/icons/basic/save.png}" alt="" /> Save</a></li>
+                <li><a href="#"><img th:src="@{/resources/CloudResourceLink/images/icons/basic/print.png}" alt="" /> Print</a></li>
+                <li><a href="#"><img th:src="@{/resources/CloudResourceLink/images/icons/basic/up.png}" alt="" /> Ascending</a></li>
+                <li><a href="#"><img th:src="@{/resources/CloudResourceLink/images/icons/basic/down.png}" alt="" /> Descending</a></li>
+            </ul>-->
+            <table class="display" id="dt3">
+                <thead>
+                <tr>
+                    <th>序号</th>
+                    <th>链接编号</th>
+                    <th>链接名称</th>
+                    <th>链接地址</th>
+                    <th>链接密码</th>
+                    <th>链接类型</th>
+                    <th>上传者ID</th>
+                    <th>上传时间</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                <tr id="table" th:each="link,linkStat : ${Links}">
+                    <td th:text="${linkStat.count}">0 </td>
+                    <td th:text="${link.getSrcl_id()}">0</td>
+                    <td th:text="${link.getSrcl_name()}">0 </td>
+                    <td th:text="${link.getSrcl_link()}">0 </td>
+                    <td th:text="${link.getSrcl_pwd()}">0 </td>
+                    <td th:text="${link.getSrcl_type()}">0 </td>
+                    <td th:text="${link.getUser_id()}">0 </td>
+                    <td th:text="${#dates.format(link.getSrcl_date(), 'yyyy-MM-dd HH:mm')}">0 </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+<div class="footer">
+    <p>云 智 工 作 室</p>
+</div>
+
+<script> /* SCRIPTS */
+$(function () {
+    $('#dt1').dataTable( {
+        "bJQueryUI": true
+    });
+    $('#dt2').dataTable( {
+        "bJQueryUI": true
+    });
+    $('#dt3').dataTable( {
+        "bJQueryUI": true,
+        "sPaginationType": "full_numbers"
+    }); /* For the data tables */
+});
+function sumitFun() {
+    if (confirm("确认删除")) {
+        return true;
+
+    } else {
+        window.event.returnValue = false;
+    }
+}
+</script>
+
+</body>
+</html>
